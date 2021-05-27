@@ -1,0 +1,360 @@
+/* COMMON */
+body{
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Nanum Gothic', sans-serif;
+  /* height: 6000px;   없어도됨, 만들 때 편하게 보려고 넣는거임. 코드작성이 끝나면 삭제. */
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.btn {
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+.btn.btn--reverse {
+  background-color: #333;
+  color: #fff;
+}
+.btn.btn--reverse:hover {
+  background-color: transparent;  /* 투명한 색상 transparent */
+  color: #333;
+}
+.btn.btn--brown {
+  color: #592b18;
+  border-color: #592b18;
+}
+.btn.btn--brown:hover {
+  color: #fff;
+  background-color: #592b18;
+}
+.btn.btn--gold {
+  color: #d9aa8a;
+  border-color: #d9aa8a;
+}
+.btn.btn--gold:hover {
+  color: #fff;
+  background-color: #d9aa8a;
+}
+.btn.btn--white {
+  color: #fff;
+  border-color: #fff;
+}
+.btn.btn--white:hover {
+  color: #333;
+  background-color: #fff;
+}
+.back-to-position {
+  opacity: 0;
+  transition: 1s;
+}
+.back-to-position.to-right {
+  transform: translateX(-150px);
+}
+.back-to-position.to-left {
+  transform: translateX(150px);
+}
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+.show .back-to-position.delay-0 {
+  transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+  transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+  transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+  transition-delay: .9s;
+}
+
+
+
+
+/* HEADER */
+header {
+  width: 100%; /* position의 fixed 와 absolute 값은 다른 block요소와 다르게 width: auto; 값이 최소한으로 줄어들게 되므로 뷰포트(웹사이트 창의 크기)의 width 폭을 100% 사용하면 badge가 설정했던대로 계속 오른쪽 끝에 붙어있을 수 있다.*/
+  /* position: relative; 화면 스크롤을 내려도 항상 badge가 상단에 고정되어있기위해 position; fixed;를 썼으니 부모상의 위치를 위한 position은 이제 필요없음.*/
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}
+header > .inner { /* 모든 header의 .inner요소에 높이가 120px이면 안되니까 > (자식기호)를 사용해 딱 header의 자식 inner만 적용되게함. 손주,증손주 X
+  /* width: 1100px; 위에 중복*/
+  height: 120px;
+  /* margin: 0 auto;
+  position: relative; 위에 중복*/
+}
+header .logo {
+  height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  LEFT: 0;
+  margin: auto;
+}
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+header .sub-menu ul.menu {
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+header .sub-menu ul.menu li {
+  position: relative;
+}
+header .sub-menu ul.menu li::before {
+  content: "";
+  /* display: block; 밑에있는 position요소가 들어가있어서 block요소로 바뀌었기때문에 없어도 된다. */
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+header .sub-menu ul.menu li a{
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+}
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+header .sub-menu .search{
+  /* background-color: red; */
+  height: 34px;
+  position: relative;
+}
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  font-size: 12px;
+  transition: width .4s;
+}
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #669900;
+}
+header .sub-menu .search .material-icons {
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: .4s;
+}
+header .sub-menu .search.focused .material-icons {
+  opacity: 0;
+  
+}
+
+/* Main menu */
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  z-index: 1;
+  display: flex;
+}
+header .main-menu .item {
+
+}
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+header .main-menu .item:hover .item__name {
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+}
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+  /* height: 200px; 컨텐츠__메뉴 안에는 다 설정해뒀으니 지워도됨 */
+}
+header .main-menu .item .item__contents .contents__menu > ul { /* 자식선택자 > 를 사용하지 않으면 하위선택자가 되고, 모든 ul태그가 선택될 수 있으니 반드시 자식 선택자 사용 */
+  display: flex;
+  padding: 20px 0;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li {
+  width: 220px;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #fff;
+}
+/* header .main-menu .item .item__contents .contents__menu > ul > li ul {
+ 사용하지 않는 선택자는 길기만 하니 지워도 된다.
+}  */
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
+  color: #669900;
+}
+header .main-menu .item .item__contents .contents__texture {
+  padding: 26px 0;
+  font-size: 12px;
+  background-image: url("../images/main_menu_pattern.jpg");
+}
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #999;
+  font-weight: 700;
+}
+header .main-menu .item .item__contents .contents__texture p {
+  color: #669900;
+  margin: 4px 0 14px;  
+}
+
+/* Badges */
+header .badges {
+  position: absolute;
+  top: 132px;
+  right:12px;
+}
+header .badges .badge {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,.15);
+  cursor: pointer;
+}
+
+
+
+/* FOOTER */
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333;
+}
+footer .inner {
+  padding: 40px 0 60px 0;
+}
+footer .menu { 
+  display: flex;
+  justify-content: center;
+}
+footer .menu li {
+  position: relative;
+}
+footer .menu li::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  margin: auto;
+}
+footer .menu li:last-child::before {
+  display: none;
+}
+footer .menu li a {
+  color: #ccc;
+  font-size:12px;
+  font-weight: 700;
+  padding: 15px;
+  display: block;
+}
+footer .menu li a.green {
+  color: #669900;
+}
+footer .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+footer .btn-group .btn{
+  font-size: 12px;
+  margin-right: 10px;
+}
+footer .btn-group .btn:last-child {
+  margin-right: 0;
+}
+footer .info {
+  margin-top: 30px;
+  text-align: center;
+}
+footer .info span {
+  margin-right: 20px;
+  color: #999;
+  font-size: 12px;
+}
+footer .info span:last-child {
+  margin-right: 0;
+}
+footer .copyright {
+  color: #999;
+  font-size:12px;
+  text-align: center;
+  margin-top: 12px;
+}
+footer .logo {
+  margin: 30px auto 0;   /* 3개의 값 = 상, 중, 하  
+  / margin-top: 30px; margin-left: auto; margin-right: auto; margin-bottom: 0;
+  요소에 margin값을 auto; 로 사용했을 때, 요소의 가로값이나 높이값이 명시되어있어야하는데,
+  이 .logo는 img로 되어있기 때문에 필요없다. 이미지는 이미 가로 * 세로 값을 알고있다고 인식함.*/
+}
+
